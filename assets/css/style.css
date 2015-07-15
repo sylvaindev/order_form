@@ -1,5 +1,10 @@
 .content{
-    margin-top: 20px;
+    margin-top: 40px;
+}
+
+h1{
+    text-align: center;
+    color: #81cbf0;
 }
 
 .table-hover > tbody > tr:hover > td,

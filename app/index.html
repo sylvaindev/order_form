@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body ng-app="Commande" ng-controller="commandeController">
+<h1>Bon de commande</h1>
     <div class="content">
         <div class="col-md-12">
             <table class="table table-striped table-hover table-responsive">
@@ -26,15 +27,9 @@
                         <th>{{article.id}}</th>
                         <td>{{article.reference}}</td>
                         <td>{{article.titre}}</td>
-                        <td>{{article.prixUnitaire}}</td>
+                        <td>{{article.prixUnitaire}} €</td>
                         <td>
-                            <select class="form-control input-sm">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                            <input type="number" ng-model="article.quantite" class="form-control bfh-number" min=0>
                         </td>
                         <td>{{article.montantHT}} €</td>
                         <td>{{article.montantTTC}} €</td>
@@ -44,15 +39,12 @@
                         <td class="success"></td>
                         <td class="success"></td>
                         <td class="success"></td>
-                        <td class="success"></td>
-                        <td class="success">{{TotalHT}} €</td>
-                        <td class="success">{{TotalTTC}} €</td>
+                        <td class="success">Votre commande contient {{ NombreArticle() }} articles.</td>
+                        <td class="success" ng-style="PrixTotalHT() >= 1000 && {'font-weight': 'bold'}">{{ PrixTotalHT() | number:2 }} €</td>
+                        <td class="success">{{ PrixTotalTTC() | number:2 }} €</td>
                     </tr>
                 </tbody>
             </table>
-
-            <div class="alert alert-info">{{NombreArticle}}</div>
-
         </div>
     </div>
 </body>
