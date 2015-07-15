@@ -19,7 +19,7 @@ angular.module('Commande', [])
                 resultTTC += article.montantTTC * article.quantite;
             });
             return resultTTC;
-        }
+        };
 
         $scope.PrixTotalHT = function() {
             var resultHT = 0;
@@ -28,15 +28,31 @@ angular.module('Commande', [])
                 resultHT += article.montantHT * article.quantite;
             });
             return resultHT;
-        }
+        };
 
         $scope.NombreArticle = function() {
             var resultArticle = 0;
 
             angular.forEach($scope.articles, function(article){
                 resultArticle += article.quantite;
-            })
+            });
             return resultArticle;
-        }
+        };
+
+        $scope.AjouterArticle = function() {
+            $scope.articles.push({
+                id: '',
+                reference: '',
+                titre: '',
+                prixUnitaire: 0,
+                quantite: 0,
+                montantHT: 0,
+                montantTTC: 0
+            });
+        };
+
+        $scope.SupprimerArticle = function(index) {
+            $scope.articles.splice(index, 1);
+        };
 
     }]);

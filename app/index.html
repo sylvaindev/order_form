@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Bon de commande</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body ng-app="Commande" ng-controller="commandeController">
@@ -16,35 +17,53 @@
                         <th>#</th>
                         <th>Référence</th>
                         <th>Titre</th>
-                        <th>Prix unitaire HT</th>
+                        <th>Prix unitaire HT/€</th>
                         <th>Quantité</th>
-                        <th>Montant HT</th>
-                        <th>Montant TTC</th>
+                        <th>Montant HT/€</th>
+                        <th>Montant TTC/€</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="article in articles">
-                        <th>{{article.id}}</th>
-                        <td>{{article.reference}}</td>
-                        <td>{{article.titre}}</td>
-                        <td>{{article.prixUnitaire}} €</td>
+                        <th>
+                            <input type="number" ng-model="article.id" class="form-control bfh-number" placeholder="Id" min=0>
+                        </th>
+                        <td>
+                            <input type="number" ng-model="article.reference" class="form-control bfh-number" placeholder="Référence" min=0>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="article.titre" class="form-control" placeholder="Titre">
+                        </td>
+                        <td>
+                            <input type="number" ng-model="article.prixUnitaire" class="form-control bfh-number">
+                        </td>
                         <td>
                             <input type="number" ng-model="article.quantite" class="form-control bfh-number" min=0>
                         </td>
-                        <td>{{article.montantHT}} €</td>
-                        <td>{{article.montantTTC}} €</td>
+                        <td>
+                            <input type="number" ng-model="article.montantHT" class="form-control bfh-number" min=0>
+                        </td>
+                        <td>
+                            <input type="number" ng-model="article.montantTTC" class="form-control bfh-number" min=0>
+                        </td>
+                        <td>
+                            <a href ng:click="SupprimerArticle($index)"><i class="fa fa-times"></i></a>
+                        </td>
                     </tr>
                     <tr class="success">
                         <th class="success">TOTAL</th>
                         <td class="success"></td>
                         <td class="success"></td>
                         <td class="success"></td>
-                        <td class="success">Votre commande contient {{ NombreArticle() }} articles.</td>
+                        <td class="success">{{ NombreArticle() }} article(s)</td>
                         <td class="success" ng-style="PrixTotalHT() >= 1000 && {'font-weight': 'bold'}">{{ PrixTotalHT() | number:2 }} €</td>
                         <td class="success">{{ PrixTotalTTC() | number:2 }} €</td>
+                        <td class="success"></td>
                     </tr>
                 </tbody>
             </table>
+            <a href ng:click="AjouterArticle()" class="btn btn-primary">Ajouter un article <i class="fa fa-plus"></i></a>
         </div>
     </div>
 </body>
