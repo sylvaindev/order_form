@@ -48,7 +48,7 @@
                             <input type="number" ng-model="article.montantTTC" class="form-control bfh-number" min=0>
                         </td>
                         <td>
-                            <a href ng:click="SupprimerArticle($index)"><i class="fa fa-times"></i></a>
+                            <a href ng:click="SupprimerArticle($index)"><i class="fa fa-times delete"></i></a>
                         </td>
                     </tr>
                     <tr class="success">
@@ -58,7 +58,7 @@
                         <td class="success"></td>
                         <td class="success">{{ NombreArticle() }} article(s)</td>
                         <td class="success" ng-style="PrixTotalHT() >= 1000 && {'font-weight': 'bold'}">{{ PrixTotalHT() | number:2 }} €</td>
-                        <td class="success">{{ PrixTotalTTC() | number:2 }} €</td>
+                        <td class="success" ng-style="PrixTotalHT() >= 1000 && {'font-weight': 'bold'}">{{ PrixTotalTTC() | number:2 }} €</td>
                         <td class="success"></td>
                     </tr>
                 </tbody>
